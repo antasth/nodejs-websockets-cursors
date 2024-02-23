@@ -10,6 +10,16 @@ const renderCursors = (users) => {
     return <Cursor key={uuid} point={[user.state.x, user.state.y]} />
   })
 }
+
+const renderUsersList = (users) => {
+  return (
+    <ul>
+      {Object.keys(users).map((uuid) => {
+        return <li key={uuid}>{JSON.stringify(users[uuid])}</li>
+      })}
+    </ul>
+  )
+}
 // eslint-disable-next-line react/prop-types
 const Home = ({ username }) => {
   const WS_URL = 'ws://localhost:8000'
@@ -32,7 +42,12 @@ const Home = ({ username }) => {
   }, [])
 
   if (lastJsonMessage) {
-    return <div>{renderCursors(lastJsonMessage)}</div>
+    return (
+      <>
+        {renderCursors(lastJsonMessage)}
+        {renderUsersList(lastJsonMessage)}
+      </>
+    )
   }
   return (
     <>
