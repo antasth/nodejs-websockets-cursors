@@ -20,11 +20,11 @@ const broadcastUsers = () => {
 
 const handleMessage = (bytes, uuid) => {
   const message = JSON.parse(bytes.toString())
-  console.log('message', message)
+  // console.log('message', message)
   const user = users[uuid]
 
   user.state = message
-  console.log('user', user)
+  // console.log('user', user)
   broadcastUsers()
 
   console.log(
